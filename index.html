@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="div1" id="div1"></div>
+    <div class="div2" id="div2"></div>
+    <div class="div3" id="div3"></div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js" integrity="sha512-pi0tSRZdlNRZeANPwdAIHRAYg6gZZV6QlAiyHXn5TYqLzBKE9jlttO/QgYLMhISD6oNv2kPsVelx+n5nw0FqKA==" crossorigin="anonymous">
+    </script>
+
+    <script src="index.js"></script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PhySimX - Acceleration Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js" integrity="sha256-Bmvb4pJWin8rqq3GnwPz/hxBtqXaMdZHJnHYlpRULa4=" crossorigin="anonymous"></script>
+
+    <style>
+        #canvas, #info {
+            display:inline-block;
+        }
+
+        #info {
+            border:3px solid black;
+            position:relative;
+            top:-110px;
+            width:140px;
+            height:295px;
+        }
+
+        #info p {
+            margin:0px;
+        }
+
+        #info, canvas {
+            position: relative;
+            left: 35%;
+        }
+
+        body * {
+            text-align:center;
+        }
+
+        button {
+            cursor:pointer
+        }
+    </style>
+</head>
+<body>
+    <button onclick="location.href='acceleration-home.html'" style="position:absolute; top:0px; left:0px;">Back to the acceleration homepage</button>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="info">
+        <p>The acceleration is</p>
+        <h5>...</h5>
+        <p>pixels on the y axis per millisecond</p>
+        <label for="mass">Mass:</label>
+        <input type="range" id="mass">
+        <button>...</button>
+    
+    
+    <script>
+        var time=0;
+    var startVel;
+    var endVel;
+    
+    //Aliases
+    var Engine = Matter.Engine,
+        World  = Matter.World,
+        Render = Matter.Render,
+        Bodies = Matter.Bodies,
+        Body   = Matter.Body;
+    
+    var canvas=document.getElementById("canvas");
+    
+    var engine=Engine.create();
+    var renderer = Render.create({canvas:canvas, context:canvas.getContext("2d"), engine: engine });
+    
+    //Resize
+    canvas.width=300;
+    canvas.height=300;
+    
+    //Create bodies
+    var ball=Bodies.circle(canvas.width/2, 50, 25);
+    World.add(engine.world, ball);
+    World.add(engine.world, Bodies.rectangle(0, canvas.height, canvas.width*2, 100, {isStatic:true})); //Ground
+    
+    function restart () {
+        var mass=Number(document.getElementById("mass").value);
+    
+        //Reset info
+        document.getElementById("info").innerHTML=`
+            <p>The acceleration is</p>
+            <h5>...</h5>
+            <p>pixels on the y axis per millisecond</p>
+            <br>
+            <label for='mass'>Mass:</label>
+            <input type="range" id="mass" value="`+mass+`" oninput="this.value=`+mass+`" step="10" min="1" max="150">
+            <button>...</button>`;
+    
+        //Reset variables
+        time=0;
+        startVel=0;
+        endVel=0;
+        Body.setPosition(ball, {x:canvas.width/2, y:50});
+        ball.mass=mass;
+    
+        //update
+        var update=setInterval(()=>{
+            Engine.update(engine); //Update the engine
+    
+            if (time==0) { // The start of the demo
+                startVel=JSON.parse(JSON.stringify(ball.velocity));
+            }
+    
+            if (ball.position.y>canvas.height-75) { //The ball is at the bottom
+                endVel=JSON.parse(JSON.stringify(ball.velocity));
+                document.getElementById("info").innerHTML=`
+                    <p>The acceleration is</p>
+                    <h5>` + (endVel.y-startVel.y)/time + `</h5>
+                    <p>pixels on the y axis per millisecond</p>
+                    <br>
+                    <label for='mass'>Mass:</label>
+                    <input type="range" id="mass" min="1" value="`+mass+`" step="10" max="150">
+                    <button onclick='restart()'>Restart</button>`;
+                clearInterval(update);
+            } else { // The ball is not at the bottom
+                time+=10;
+            }
+        }, 10);
+    }
+    
+    restart();
+    
+    Render.run(renderer);
+    
+    </script>
+    </div>
+
+</body>
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
